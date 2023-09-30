@@ -1,0 +1,60 @@
+type AddLessonPayload = record {
+  lesson_title : text;
+  course_id : text;
+  lesson_url : text;
+};
+type CourseInfo = record {
+  id : text;
+  total_registered : float64;
+  course_description : text;
+  updated_at : opt nat64;
+  course_title : text;
+  created_at : nat64;
+  course_introductory_video_url : text;
+  course_benefit : text;
+  course_image : text;
+};
+type CreateCourseInfoPayload = record {
+  course_description : text;
+  course_title : text;
+  course_introductory_video_url : text;
+  course_benefit : text;
+  course_image : text;
+};
+type CreateStudentPayload = record {
+  user_name : text;
+  first_name : text;
+  last_name : text;
+};
+type LessonInfo = record {
+  id : text;
+  created_at : nat64;
+  lesson_title : text;
+  course_id : text;
+  lesson_url : text;
+};
+type StudentInfo = record {
+  id : text;
+  updated_at : opt nat64;
+  user_name : text;
+  created_at : nat64;
+  first_name : text;
+  last_name : text;
+};
+type _AzleResult = variant { Ok : CourseInfo; Err : text };
+type _AzleResult_1 = variant { Ok : LessonInfo; Err : text };
+type _AzleResult_2 = variant { Ok : StudentInfo; Err : text };
+type _AzleResult_3 = variant { Ok : vec LessonInfo; Err : text };
+type _AzleResult_4 = variant { Ok : vec StudentInfo; Err : text };
+service : () -> {
+  deleteCourse : (text) -> (_AzleResult);
+  deleteLesson : (text) -> (_AzleResult_1);
+  deleteStudent : (text) -> (_AzleResult_2);
+  getAllLessons : () -> (_AzleResult_3) query;
+  getAllStudents : () -> (_AzleResult_4) query;
+  getLessonInACourse : (text) -> (_AzleResult_1) query;
+  registerCourseInfo : (CreateCourseInfoPayload) -> (_AzleResult);
+  registerCourseLesson : (AddLessonPayload) -> (_AzleResult_1);
+  registerStudent : (CreateStudentPayload) -> (_AzleResult_2);
+  studentRegisterCourse : (text) -> (_AzleResult);
+}
