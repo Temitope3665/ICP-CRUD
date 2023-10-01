@@ -40,6 +40,7 @@ type StudentInfo = record {
   created_at : nat64;
   first_name : text;
   last_name : text;
+  course_ids : vec text;
 };
 type _AzleResult = variant { Ok : CourseInfo; Err : text };
 type _AzleResult_1 = variant { Ok : LessonInfo; Err : text };
@@ -52,9 +53,9 @@ service : () -> {
   deleteStudent : (text) -> (_AzleResult_2);
   getAllLessons : () -> (_AzleResult_3) query;
   getAllStudents : () -> (_AzleResult_4) query;
-  getLessonInACourse : (text) -> (_AzleResult_1) query;
+  getLessonById : (text) -> (_AzleResult_1) query;
   registerCourseInfo : (CreateCourseInfoPayload) -> (_AzleResult);
   registerCourseLesson : (AddLessonPayload) -> (_AzleResult_1);
   registerStudent : (CreateStudentPayload) -> (_AzleResult_2);
-  studentRegisterCourse : (text) -> (_AzleResult);
+  studentRegisterForCourse : (text, text) -> (_AzleResult);
 }
