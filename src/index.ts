@@ -95,7 +95,7 @@ export function registerCourseInfo(
 
   try {
     const courseInfo: CourseInfo = {
-      id: ic.caller().toString(),
+      id: uuidv4(),
       updated_at: Opt.None,
       total_registered: 0,
       created_at: ic.time(),
